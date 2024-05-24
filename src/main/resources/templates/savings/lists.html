@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base.html :: content">
+<head>
+    <title>Savings List</title>
+</head>
+<body>
+<div class="container">
+    <h2>Savings Accounts</h2>
+    <a th:href="@{/savings/add}" class="btn btn-primary">Add New Savings Account</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Customer Name</th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="savings : ${savingsList}">
+            <td th:text="${savings.accountNumber}">Account Number</td>
+            <td th:text="${savings.customerName}">Customer Name</td>
+            <td th:text="${savings.balance}">Balance</td>
+            <td>
+                <a th:href="@{/savings/edit/{id}(id=${savings.id})}" class="btn btn-warning">Edit</a>
+                <a th:href="@{/savings/delete/{id}(id=${savings.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
